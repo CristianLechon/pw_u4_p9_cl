@@ -17,19 +17,17 @@ const guardar = async (body) => {
         apellido: "Lechon"
     }*/
     const data = await axios.post('http://localhost:8081/matricula/api/v1.0/estudiantes', body).then(r => r.data);
-    console.log(data);
+    //console.log(data);
     return data;
 }
 
 const actualizar = async (id, body) => {
     const data  = await axios.put(`http://localhost:8081/matricula/api/v1.0/estudiantes/${id}`, body).then(r => r.data);
-    console.log(data);
     return data;
 }
 
 const actualizarParcial = async (id, body) => {
     const data  = await axios.patch(`http://localhost:8081/matricula/api/v1.0/estudiantes/${id}`, body).then(r => r.data);
-    console.log(data);
     return data;
 }
 
@@ -38,11 +36,11 @@ const borrar = async (id) => {
 }
 
 
-export async function consultarTodosFachada() {
+export const consultarTodosFachada = async () => {
     return  await consultarTodos();
 }
 
-export async function consultarPorIdFachada(id){
+export const consultarPorIdFachada = async (id) => {
     return await consultarPorId(id);
 }
 

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container-guardar">
     <button>Guardar</button>
     <button>Actualizar</button>
     <button>Actualizar Parcial</button>
@@ -36,5 +36,8 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.container-guardar{
+  text-align: center;
+}
 </style>

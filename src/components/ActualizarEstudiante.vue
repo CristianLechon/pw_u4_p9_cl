@@ -1,7 +1,10 @@
 <template>
-  <div class="container-g-component">
+  <div class="container-actualizar">
     <form action="#">
-      <h2>Nuevo Estudiante</h2>
+      <h2>Actualizar Estudiante</h2>
+      <p type="Ingresa el id:">
+        <input v-model.number="id" type="number" placeholder="Ingresa un ID" />
+      </p>
       <p type="Nombre:">
         <input v-model="nombre" type="text" />
       </p>
@@ -18,7 +21,7 @@
         <input v-model="genero" type="text" />
       </p>
       <div class="centrar-boton">
-        <button type="button" @click="pasarPadre">Guardar</button>
+        <button type="button" @click="pasarPadre">Actualizar</button>
       </div>
     </form>
   </div>
@@ -26,8 +29,10 @@
 
 <script>
 export default {
+  emits: ["actualizar"],
   data() {
     return {
+      id: null,
       nombre: null,
       apellido: null,
       fechaNacimiento: null,
@@ -44,9 +49,8 @@ export default {
         provincia: this.provincia,
         genero: this.genero,
       };
-
-      this.$emit("guardar", estudiante);
-
+      this.$emit("actualizar", this.id, estudiante);
+      this.id = "";
       this.nombre = "";
       this.apellido = "";
       this.fechaNacimiento = "";
@@ -63,14 +67,14 @@ export default {
   box-sizing: border-box;
 }
 
-.container-g-component {
+.container-actualizar {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 form {
-  background: #ffffff;
+  background: white;
   padding: 40px 45px;
   border-radius: 18px;
   width: 360px;
@@ -95,7 +99,7 @@ p::before {
   position: absolute;
   top: -10px;
   left: 5px;
-  background: #fff;
+  background: white;
   padding: 0 6px;
   font-size: 13px;
   color: #666;
@@ -138,7 +142,6 @@ button:hover {
 }
 
 button:active {
-  transform: scale(0.97);
+  transform: scale(0.96);
 }
-
 </style>

@@ -2,13 +2,18 @@
   <nav>
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link> |
-    <router-link to="/guardar">Guardar</router-link>
+    <router-link to="/guardar">Guardar</router-link> |
+    <router-link to="/listarTodos">Buscar Todos</router-link> |
+    <router-link to="/consultarId">Consultar por Id</router-link> |
+    <router-link to="/actualizar">Actualizar</router-link> |
+    <router-link to="/actualizarParcial">Actualizar Parcial</router-link> |
+    <router-link to="/eliminar">Eliminar</router-link>
   </nav>
   <router-view/>
 </template>
 
 <style scoped>
-#app {
+nav {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
