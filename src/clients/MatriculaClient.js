@@ -1,43 +1,44 @@
 import axios from "axios";
-
+const TOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJtYXRyaWN1bGEtYXV0aCIsInN1YiI6ImxhYmNvbSIsImdyb3VwcyI6WyJhZG1pbiJdLCJpYXQiOjE3NzAyNTI0MDgsImV4cCI6MTc3MDI1NjAwOCwianRpIjoiYjBiMTgyY2YtNWRjMS00YjI5LWJlZTgtMjI1ZjlhNjNjZjYwIn0.m4Nmw3wPIL23LMkgXtsmxRuQdk7Ke_F0ByLCUDMWU42w0f6D1YLQM76tDcdcYfENfaDEgiILm8qsHFCHGdoWG_fLJ358Pl4H3X1qTE-k05souxHhhMPfFTcUIiYbWJ4rOnlllqFenZtAYncMVI6DRLaDYQxc_mxXRxpilvZjiLuGY5Lkysi2PwSpkxWyo4dlp80JaJBa9zlMq10YCMwHr3HvRyBwMMgMTImBeZGDEBz-9fhCSSUZ6QEAT6k8p75bRuz6j2MZ2pHkFj9eRBuaq1isc5QT6TKVk8YJOy2sV7KMnquvHg8ujd_7KIJMThD22oruF3FjHb1d4sisjxR8Jg";
+const URL = "http://localhost:8081/matricula/api/v1.0/estudiantes";
 
 const consultarTodos = async () => {
-    const data = await axios.get('http://localhost:8081/matricula/api/v1.0/estudiantes').then(r => r.data);
+    const data = await axios.get(`${URL}`, { headers: { Authorization: `Bearer ${TOKEN}`, } }).then(r => r.data);
     return data;
 }
 
-const consultarPorId = async (id) => {
-    const data = await axios.get(`http://localhost:8081/matricula/api/v1.0/estudiantes/${id}`).then(r => r.data);
+const consultarPorId = async (id, TOKEN) => {
+    const data = await axios.get(`${URL}/${id}`, { headers: { Authorization: `Bearer ${TOKEN}` } }).then(r => r.data);
     return data;
 }
 
-const guardar = async (body) => {
+const guardar = async (body, TOKEN) => {
     /*const objeto = {
         nombre: "Cristian",
         apellido: "Lechon"
     }*/
-    const data = await axios.post('http://localhost:8081/matricula/api/v1.0/estudiantes', body).then(r => r.data);
+    const data = await axios.post(`${URL}`, body, { headers: { Authorization: `Bearer ${TOKEN}` } });
     //console.log(data);
     return data;
 }
 
-const actualizar = async (id, body) => {
-    const data  = await axios.put(`http://localhost:8081/matricula/api/v1.0/estudiantes/${id}`, body).then(r => r.data);
+const actualizar = async (id, body, TOKEN) => {
+    const data = await axios.put(`${URL}/${id}`, body, { headers: { Authorization: `Bearer ${TOKEN}` } }).then(r => r.data);
     return data;
 }
 
-const actualizarParcial = async (id, body) => {
-    const data  = await axios.patch(`http://localhost:8081/matricula/api/v1.0/estudiantes/${id}`, body).then(r => r.data);
+const actualizarParcial = async (id, body, TOKEN) => {
+    const data = await axios.patch(`${URL}/${id}`, body, { headers: { Authorization: `Bearer ${TOKEN}` } }).then(r => r.data);
     return data;
 }
 
-const borrar = async (id) => {
-    await axios.delete(`http://localhost:8081/matricula/api/v1.0/estudiantes/${id}`).then(r => r.data);
+const borrar = async (id, TOKEN) => {
+    await axios.delete(`${URL}/${id}`, { headers: { Authorization: `Bearer ${TOKEN}` } }).then(r => r.data);
 }
 
 
 export const consultarTodosFachada = async () => {
-    return  await consultarTodos();
+    return await consultarTodos();
 }
 
 export const consultarPorIdFachada = async (id) => {
@@ -59,5 +60,5 @@ export const actualizarParcialFachada = async (id, body) => {
 export const borrarFachada = async (id) => {
     await borrar(id);
 }
-   
+
 
