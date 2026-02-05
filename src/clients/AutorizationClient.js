@@ -1,14 +1,20 @@
 import axios from "axios";
 
-const URL = "http://localhost:8082/autorizacion/token?user=labcom&password=labcom,2015";
+const user = "labcom";
+const password = "labcom,2015"
+const URL = `http://localhost:8082/autorizacion/token?user=${user}&password=${password}`;
+let tokenCache = null;
 
 const obtenerToken = async () => {
-    const data = await axios.get(URL).then(r => r.data);
-    console.log("Token:", data.accessToken);
-    console.log("Rol:", data.role);
-    const token = data.accessToken;
-    localStorage.setItem("token", token);
-    return token;
+
+    if (tokenCache) {
+        console.log("Reutilizando token", tokenCache);
+        return tokenCache;
+    }
+    const data = await axios.get(`${URL}`).then(r => r.data);
+    tokenCache = data.accessToken;
+    console.log(tokenCache);
+    return tokenCache;
 };
 
 export const obtenerTokenFachada = async () => {

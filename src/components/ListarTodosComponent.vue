@@ -3,6 +3,7 @@
     <table>
       <thead>
         <tr>
+          <th>ID</th>
           <th>Nombre</th>
           <th>Apellido</th>
           <th>Fecha nacimiento</th>
@@ -12,6 +13,7 @@
       </thead>
       <tbody>
         <tr v-for="estudiante in estudiantes" :key="estudiante">
+          <td>{{ estudiante.id }}</td>
           <td>{{ estudiante.nombre }}</td>
           <td>{{ estudiante.apellido }}</td>
           <td>{{ estudiante.fechaNacimiento }}</td>
