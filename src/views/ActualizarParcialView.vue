@@ -15,9 +15,9 @@ export default {
     async actualizarParcial(id, body) {
       try {
         const res = await actualizarParcialFachada(id, body);
-        console.log("Exito al actualizar");
+        console.log("Exito al actualizar Parcialmente");
       } catch (error) {
-        console.log("Error al actualizar");
+        console.log("Error al actualizar Parcialmente");
         
       }
     },
