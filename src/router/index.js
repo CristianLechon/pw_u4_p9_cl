@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue';
+import LoginView from '../views/LoginView.vue';
 
 
 const routes = [
@@ -11,6 +12,11 @@ const routes = [
       requiereAutorizacion: true,
       esPublica: false
     }
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: LoginView
   },
   {
     path: '/about',
@@ -89,7 +95,15 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   if (to.meta.requiereAutorizacion) {
     /* le envio a una pagina de login */
-    console.log("Redirige a Login");
+    const estaAutenticado = localStorage.getItem("estaAutenticado");
+    const token = localStorage.getItem("token");
+
+    if (!estaAutenticado) {
+      console.log("Redirige a Login");
+      next({ name: 'login' });
+    } else {
+      next();
+    }
   } else {
     /* le dejo pasar sin validacion */
     console.log("Pase Libre");
